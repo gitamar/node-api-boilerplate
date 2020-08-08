@@ -7,8 +7,14 @@
   "parserOptions": {
     "ecmaVersion": 2017
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier"],
   "rules": {
+    "airbnb" :["error"],
+    "prettier/prettier": ["error"],
     "comma-spacing": ["error", { "before": false, "after": true }],
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
