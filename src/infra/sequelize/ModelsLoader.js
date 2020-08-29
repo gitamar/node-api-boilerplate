@@ -11,7 +11,7 @@ module.exports = {
         return (file.indexOf('.') !== 0) && (file !== indexFile) && (file.slice(-3) === '.js');
       })
       .forEach((file) => {
-        const model = sequelize['import'](path.join(baseFolder, file));
+        const model = sequelize['define'](path.join(baseFolder, file));
         const modelName = file.split('.')[0];
         loaded[modelName] = model;
       });

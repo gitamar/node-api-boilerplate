@@ -4,17 +4,19 @@ class Application {
     this.database = database;
     this.logger = logger;
 
-    if(database && database.options.logging) {
+    if (database && database.options.logging) {
       database.options.logging = logger.info.bind(logger);
     }
   }
 
   async start() {
-    if(this.database) {
-      await this.database.authenticate();
+    console.log('in app');
+    if (this.database) {
+      // console.log(this.database.authenticate());
+      await this.database.authenticate()
+      await this.server.start();
     }
-
-    await this.server.start();
+    console.log('inn apppp');
   }
 }
 
