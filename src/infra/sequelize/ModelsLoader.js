@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Sequelize = require('sequelize');
 
 module.exports = {
   load({ sequelize, baseFolder, indexFile = 'index.js' }) {
@@ -11,7 +12,8 @@ module.exports = {
         return (file.indexOf('.') !== 0) && (file !== indexFile) && (file.slice(-3) === '.js');
       })
       .forEach((file) => {
-        const model = sequelize['import'](path.join(baseFolder, file));
+        // const model = sequelize.import(path.join(baseFolder, file));
+        const model = require(path.join(baseFolder, file))(sequelize, Sequelize.DataTypes);
         const modelName = file.split('.')[0];
         loaded[modelName] = model;
       });
